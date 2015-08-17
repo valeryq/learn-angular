@@ -1,0 +1,22 @@
+@import url(//fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:400,700,700italic,400italic);
+
+html {
+    font-family: 'Roboto Slab', serif;
+}
+
+.thumbnail img.pull-right {
+    width: 50px;
+}
+
+md-toolbar.md-default-theme {
+    background-color: black;
+}
+
+section.jumbotron {
+    margin-bottom: 30px;
+    padding: 1px 30px;
+    background-color: #5aadbb;
+    text-align: center;
+
+    color: white;
+}

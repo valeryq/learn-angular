@@ -1,0 +1,12 @@
+<md-card ng-repeat="article in articles | orderBy: '-created_at'">
+    <md-card-content>
+        <h2 class="md-title">{{ article.title }}</h2>
+
+        <p>{{ article.description }}</p>
+        <small>{{ article.created_at }}</small>
+    </md-card-content>
+    <div class="md-actions" layout="row" layout-align="end center">
+        <md-button class="md-raised md-primary">Редактировать</md-button>
+        <md-button ng-click="showConfirmDelete($event, article)" class="md-raised md-warn">Удалить</md-button>
+    </div>
+</md-card>
