@@ -4,6 +4,10 @@
     angular
         .module('blog')
         .run(function (webSql) {
+
+            /**
+             * Create DB schema
+             */
             webSql.createTable('articles', {
                 "id": {
                     "type": "INTEGER",

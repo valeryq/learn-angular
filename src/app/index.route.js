@@ -8,15 +8,21 @@
     function routeConfig($routeProvider) {
         $routeProvider
             .when('/create', {
-                templateUrl: 'app/modules/create/create.html',
+                templateUrl: 'app/modules/article/create/create.html',
                 controller: 'CreateController',
                 controllerAs: 'create',
                 animation: 'slide'
             })
             .when('/list', {
-                templateUrl: 'app/modules/list/list.html',
+                templateUrl: 'app/modules/article/list/list.html',
                 controller: 'ListController',
                 controllerAs: 'list',
+                animation: 'slide'
+            })
+            .when('/edit/:id', {
+                templateUrl: 'app/modules/article/create/create.html',
+                controller: 'EditController',
+                controllerAs: 'edit',
                 animation: 'slide'
             })
             .otherwise({

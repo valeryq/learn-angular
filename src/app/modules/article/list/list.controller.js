@@ -5,15 +5,22 @@
         .module('blog')
         .controller('ListController', ListController);
 
-    /** @ngInject */
-    function ListController($scope, webSql, $mdDialog) {
+    /**
+     * Class ListController
+     *
+     * @param $scope
+     * @param ArticleRepository
+     * @param $mdDialog
+     * @constructor
+     */
+    function ListController($scope, ArticleRepository, $mdDialog) {
         $scope.articles = [];
 
-        /* Выбрать все записи из БД */
-        webSql.selectAll('articles').then(function (articles) {
-            for (var i = 0; i < articles.rows.length; i++) {
-                $scope.articles.push(articles.rows.item(i));
-            }
+        /**
+         * Получить все записи из БД
+         */
+        ArticleRepository.all(function (articles) {
+            $scope.articles = articles;
         });
 
 
@@ -32,8 +39,9 @@
                 .targetEvent(ev);
 
             $mdDialog.show(confirm).then(function () {
-                webSql.del('articles', {id: article.id});
-                $scope.articles.splice($scope.articles.indexOf(article), 1);
+                ArticleRepository.delete(article.id, function () {
+                    $scope.articles.splice($scope.articles.indexOf(article), 1);
+                });
             });
         };
     }
