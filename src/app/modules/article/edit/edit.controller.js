@@ -8,29 +8,32 @@
     /**
      * Class EditController
      *
-     * @param $scope
+     * @param ArticleService
      * @param $route
-     * @param ArticleRepository
      * @param $location
      * @constructor
      */
-    function EditController($scope, $route, ArticleRepository, $location) {
+    function EditController(ArticleService, $route, $location) {
+
+        var vm = this;
+
+        vm.processForm = processForm;
 
         /**
          * Получение поста по его идентификатору
          */
-        ArticleRepository.find($route.current.params.id, function (article) {
-            $scope.article = angular.copy(article);
+        ArticleService.find($route.current.params.id).then(function (article) {
+            vm.article = angular.copy(article);
         });
-
 
         /**
          * Обработка формы (обновление поста)
          */
-        $scope.processForm = function () {
-            ArticleRepository.update($scope.article.id, $scope.article, function (data) {
+        function processForm() {
+            ArticleService.update(vm.article.id, vm.article).then(function () {
                 $location.path('#/');
             });
         }
     }
+
 })();

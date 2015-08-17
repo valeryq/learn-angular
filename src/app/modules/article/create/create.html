@@ -1,13 +1,13 @@
-<form name="article__create" ng-submit="processForm()">
+<form name="article__create" ng-submit="vm.processForm()">
     <div>
         <md-input-container>
             <label>Title</label>
-            <input ng-model="article.title" required>
+            <input ng-model="vm.article.title" required>
         </md-input-container>
 
         <md-input-container>
             <label>Description</label>
-            <textarea ng-model="article.description" rows="10" required></textarea>
+            <textarea ng-model="vm.article.description" rows="10" required></textarea>
         </md-input-container>
 
         <md-button type="submit" class="md-raised md-primary">Save</md-button>

@@ -8,31 +8,25 @@
     /**
      * Class CreateController
      *
-     * @param $scope
-     * @param ArticleRepository
+     * @param ArticleService
      * @param $location
      * @constructor
      */
-    function CreateController($scope, ArticleRepository, $location) {
+    function CreateController(ArticleService, $location) {
 
-        /**
-         * Default article scope
-         *
-         * @type {{title: string, description: string}}
-         */
-        $scope.article = {
-            title: '',
-            description: ''
-        };
+        var vm = this;
+
+        vm.article = {};
+        vm.processForm = processForm;
 
 
         /**
          * Обработка формы
          */
-        $scope.processForm = function () {
-            ArticleRepository.create($scope.article, function () {
+        function processForm() {
+            ArticleService.create(vm.article).then(function () {
                 $location.path('#/');
-            })
+            });
         }
     }
 })();

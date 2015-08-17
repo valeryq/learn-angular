@@ -8,41 +8,44 @@
     /**
      * Class ListController
      *
-     * @param $scope
-     * @param ArticleRepository
+     * @param ArticleService
      * @param $mdDialog
      * @constructor
      */
-    function ListController($scope, ArticleRepository, $mdDialog) {
-        $scope.articles = [];
+    function ListController(ArticleService, $mdDialog) {
+
+        var vm = this;
+
+        vm.articles = [];
+        vm.showConfirmDelete = showConfirmDelete;
 
         /**
          * Получить все записи из БД
          */
-        ArticleRepository.all(function (articles) {
-            $scope.articles = articles;
+        ArticleService.getList().then(function (articles) {
+            vm.articles = articles;
         });
 
 
         /**
          * Показать диалог удаления поста
          *
-         * @param ev
+         * @param event
          * @param article
          */
-        $scope.showConfirmDelete = function (ev, article) {
+        function showConfirmDelete(event, article) {
             var confirm = $mdDialog.confirm()
                 .title('Удаление')
                 .content('Вы действительно хотите удалить пост?')
                 .ok('Удалить')
                 .cancel('Отменить')
-                .targetEvent(ev);
+                .targetEvent(event);
 
             $mdDialog.show(confirm).then(function () {
-                ArticleRepository.delete(article.id, function () {
-                    $scope.articles.splice($scope.articles.indexOf(article), 1);
+                ArticleService.delete(article.id).then(function () {
+                    vm.articles.splice(vm.articles.indexOf(article), 1);
                 });
             });
-        };
+        }
     }
 })();

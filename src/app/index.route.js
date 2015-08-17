@@ -7,23 +7,20 @@
 
     function routeConfig($routeProvider) {
         $routeProvider
-            .when('/create', {
-                templateUrl: 'app/modules/article/create/create.html',
-                controller: 'CreateController',
-                controllerAs: 'create',
-                animation: 'slide'
-            })
             .when('/list', {
                 templateUrl: 'app/modules/article/list/list.html',
                 controller: 'ListController',
-                controllerAs: 'list',
-                animation: 'slide'
+                controllerAs: 'vm'
+            })
+            .when('/create', {
+                templateUrl: 'app/modules/article/create/create.html',
+                controller: 'CreateController',
+                controllerAs: 'vm'
             })
             .when('/edit/:id', {
                 templateUrl: 'app/modules/article/create/create.html',
                 controller: 'EditController',
-                controllerAs: 'edit',
-                animation: 'slide'
+                controllerAs: 'vm'
             })
             .otherwise({
                 redirectTo: '/list'

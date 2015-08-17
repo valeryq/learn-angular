@@ -3,31 +3,33 @@
 
     angular
         .module('blog')
-        .run(function (webSql) {
+        .run(migrate);
 
-            /**
-             * Create DB schema
-             */
-            webSql.createTable('articles', {
-                "id": {
-                    "type": "INTEGER",
-                    "null": "NOT NULL",
-                    "primary": true,
-                    "auto_increment": true
-                },
-                "title": {
-                    "type": "TEXT",
-                    "null": "NOT NULL"
-                },
-                "description": {
-                    "type": "TEXT",
-                    "null": "NOT NULL"
-                },
-                "created_at": {
-                    "type": "TIMESTAMP",
-                    "null": "NOT NULL",
-                    "default": "CURRENT_TIMESTAMP"
-                }
-            });
+    function migrate(webSql) {
+
+        /**
+         * Create DB schema
+         */
+        webSql.createTable('articles', {
+            "id": {
+                "type": "INTEGER",
+                "null": "NOT NULL",
+                "primary": true,
+                "auto_increment": true
+            },
+            "title": {
+                "type": "TEXT",
+                "null": "NOT NULL"
+            },
+            "description": {
+                "type": "TEXT",
+                "null": "NOT NULL"
+            },
+            "created_at": {
+                "type": "TIMESTAMP",
+                "null": "NOT NULL",
+                "default": "CURRENT_TIMESTAMP"
+            }
         });
+    }
 })();
