@@ -12,34 +12,28 @@
      * @returns {*|{executeQuery, insert, update, del, select, selectAll, whereClause, replace, createTable, dropTable}}
      */
     function webSql() {
-
-        var vm = this;
-
-        vm.config = {};
-        vm.$get = getProvider;
-        vm.setConfig = setConfig;
-
-
-        /**
-         * Получение провайдера
-         *
-         * @param $webSql
-         * @returns {*|{executeQuery, insert, update, del, select, selectAll, whereClause, replace, createTable, dropTable}}
-         *
-         * @ngInject
-         */
-        function getProvider($webSql) {
-            return $webSql.openDatabase(vm.config.dbName, vm.config.version, vm.config.description, vm.config.size);
-        }
-
-        /**
-         * Установка новых конфигураций провайдера
-         *
-         * @param config
-         */
-        function setConfig(config) {
-            vm.config = config;
-        }
+        this.config = {};
     }
+
+    /**
+     * Получение провайдера
+     *
+     * @param $webSql
+     * @returns {*|{executeQuery, insert, update, del, select, selectAll, whereClause, replace, createTable, dropTable}}
+     *
+     * @ngInject
+     */
+    webSql.prototype.$get = function ($webSql) {
+        return $webSql.openDatabase(this.config.dbName, this.config.version, this.config.description, this.config.size);
+    };
+
+    /**
+     * Установка новых конфигураций провайдера
+     *
+     * @param config
+     */
+    webSql.prototype.setConfig = function (config) {
+        this.config = config;
+    };
 
 })();

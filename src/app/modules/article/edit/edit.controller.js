@@ -16,20 +16,21 @@
      * @ngInject
      */
     function EditController(article, ArticleService, $location) {
-
-        var vm = this;
-
-        vm.article = article;
-        vm.processForm = processForm;
-
-        /**
-         * Обработка формы (обновление поста)
-         */
-        function processForm() {
-            ArticleService.update(vm.article.id, vm.article).then(function () {
-                $location.path('#/');
-            });
-        }
+        this.article = article;
+        this.ArticleService = ArticleService;
+        this.$location = $location;
     }
+
+    /**
+     * Обработка формы (обновление поста)
+     */
+    EditController.prototype.processForm = function () {
+
+        var self = this;
+
+        self.ArticleService.update(self.article.id, self.article).then(function () {
+            self.$location.path('#/');
+        });
+    };
 
 })();

@@ -14,66 +14,59 @@
      * @ngInject
      */
     function ArticleRepository(webSql) {
-
-        var vm = this;
-
-        vm.find = find;
-        vm.all = all;
-        vm.create = create;
-        vm.update = update;
-        vm.remove = remove;
-
-
-        /**
-         * Получить пост по ID
-         *
-         * @param id
-         */
-        function find(id) {
-            return webSql.executeQuery('SELECT * FROM articles WHERE id = ' + id).then(function (data) {
-                return angular.copy(data.rows.item(0));
-            });
-        }
-
-        /**
-         * Получение всех постов из БД
-         */
-        function all() {
-            /* Выбрать все записи из БД */
-            return webSql.selectAll('articles').then(function (data) {
-                var articles = [];
-
-                for (var i = 0; i < data.rows.length; i++) {
-                    articles.push(data.rows.item(i));
-                }
-
-                return articles;
-            });
-        }
-
-        /**
-         * Создание поста
-         *
-         * @param attributes
-         */
-        function create(attributes) {
-            return webSql.insert('articles', attributes);
-        }
-
-        /**
-         * Обновление поста
-         *
-         * @param attributes
-         */
-        function update(id, attributes) {
-            return webSql.update('articles', attributes, {id: id});
-        }
-
-        /**
-         * Удаление поста из БД
-         */
-        function remove(id) {
-            return webSql.del('articles', {id: id});
-        }
+        this.webSql = webSql;
     }
+
+    /**
+     * Получить пост по ID
+     *
+     * @param id
+     */
+    ArticleRepository.prototype.find = function (id) {
+        return this.webSql.executeQuery('SELECT * FROM articles WHERE id = ' + id).then(function (data) {
+            return angular.copy(data.rows.item(0));
+        });
+    };
+
+    /**
+     * Получение всех постов из БД
+     */
+    ArticleRepository.prototype.all = function () {
+        /* Выбрать все записи из БД */
+        return this.webSql.selectAll('articles').then(function (data) {
+            var articles = [];
+
+            for (var i = 0; i < data.rows.length; i++) {
+                articles.push(data.rows.item(i));
+            }
+
+            return articles;
+        });
+    };
+
+    /**
+     * Создание поста
+     *
+     * @param attributes
+     */
+    ArticleRepository.prototype.create = function (attributes) {
+        return this.webSql.insert('articles', attributes);
+    };
+
+    /**
+     * Обновление поста
+     *
+     * @param attributes
+     */
+    ArticleRepository.prototype.update = function (id, attributes) {
+        return this.webSql.update('articles', attributes, {id: id});
+    };
+
+    /**
+     * Удаление поста из БД
+     */
+    ArticleRepository.prototype.remove = function (id) {
+        return this.webSql.del('articles', {id: id});
+    };
+
 })();

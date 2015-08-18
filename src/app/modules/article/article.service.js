@@ -12,65 +12,58 @@
      * @ngInject
      */
     function ArticleService(ArticleRepository) {
-
-        var vm = this;
-
-        vm.find = find;
-        vm.getList = getList;
-        vm.create = create;
-        vm.update = update;
-        vm.remove = remove;
-
-
-        /**
-         * Поиск одного поста записи
-         *
-         * @param id
-         * @returns {*}
-         */
-        function find(id) {
-            return ArticleRepository.find(id);
-        }
-
-        /**
-         * Получение всех постов
-         *
-         * @returns {*}
-         */
-        function getList() {
-            return ArticleRepository.all();
-        }
-
-
-        /**
-         * Создание поста
-         *
-         * @param attributes
-         * @returns {*}
-         */
-        function create(attributes) {
-            return ArticleRepository.create(attributes);
-        }
-
-        /**
-         * Обновление поста
-         *
-         * @param id
-         * @param attributes
-         * @returns {*}
-         */
-        function update(id, attributes) {
-            return ArticleRepository.update(id, attributes);
-        }
-
-        /**
-         * Удаление поста
-         *
-         * @param id
-         * @returns {*}
-         */
-        function remove(id) {
-            return ArticleRepository.remove(id);
-        }
+        this.ArticleRepository = ArticleRepository;
     }
+
+    /**
+     * Поиск одного поста записи
+     *
+     * @param id
+     * @returns {*}
+     */
+    ArticleService.prototype.find = function (id) {
+        return this.ArticleRepository.find(id);
+    };
+
+    /**
+     * Получение всех постов
+     *
+     * @returns {*}
+     */
+    ArticleService.prototype.getList = function () {
+        return this.ArticleRepository.all();
+    };
+
+
+    /**
+     * Создание поста
+     *
+     * @param attributes
+     * @returns {*}
+     */
+    ArticleService.prototype.create = function (attributes) {
+        return this.ArticleRepository.create(attributes);
+    };
+
+    /**
+     * Обновление поста
+     *
+     * @param id
+     * @param attributes
+     * @returns {*}
+     */
+    ArticleService.prototype.update = function (id, attributes) {
+        return this.ArticleRepository.update(id, attributes);
+    };
+
+    /**
+     * Удаление поста
+     *
+     * @param id
+     * @returns {*}
+     */
+    ArticleService.prototype.remove = function (id) {
+        return this.ArticleRepository.remove(id);
+    };
+
 })();

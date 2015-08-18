@@ -15,20 +15,20 @@
      * @ngInject
      */
     function CreateController(ArticleService, $location) {
-
-        var vm = this;
-
-        vm.article = {};
-        vm.processForm = processForm;
-
-
-        /**
-         * Обработка формы
-         */
-        function processForm() {
-            ArticleService.create(vm.article).then(function () {
-                $location.path('#/');
-            });
-        }
+        this.ArticleService = ArticleService;
+        this.$location = $location;
     }
+
+    /**
+     * Обработка формы
+     */
+    CreateController.prototype.processForm = function () {
+
+        var self = this;
+
+        self.ArticleService.create(self.article).then(function () {
+            self.$location.path('#/');
+        });
+    };
+    
 })();

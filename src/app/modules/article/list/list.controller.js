@@ -16,31 +16,33 @@
      * @ngInject
      */
     function ListController(articles, ArticleService, $mdDialog) {
-
-        var vm = this;
-
-        vm.articles = articles;
-        vm.showConfirmDelete = showConfirmDelete;
-
-        /**
-         * Показать диалог удаления поста
-         *
-         * @param event
-         * @param article
-         */
-        function showConfirmDelete(event, article) {
-            var confirm = $mdDialog.confirm()
-                .title('Удаление')
-                .content('Вы действительно хотите удалить пост?')
-                .ok('Удалить')
-                .cancel('Отменить')
-                .targetEvent(event);
-
-            $mdDialog.show(confirm).then(function () {
-                ArticleService.remove(article.id).then(function () {
-                    vm.articles.splice(vm.articles.indexOf(article), 1);
-                });
-            });
-        }
+        this.articles = articles;
+        this.ArticleService = ArticleService;
+        this.$mdDialog = $mdDialog;
     }
+
+    /**
+     * Показать диалог удаления поста
+     *
+     * @param event
+     * @param article
+     */
+    ListController.prototype.showConfirmDelete = function (event, article) {
+
+        var self = this;
+
+        var confirm = self.$mdDialog.confirm()
+            .title('Удаление')
+            .content('Вы действительно хотите удалить пост?')
+            .ok('Удалить')
+            .cancel('Отменить')
+            .targetEvent(event);
+
+        self.$mdDialog.show(confirm).then(function () {
+            self.ArticleService.remove(article.id).then(function () {
+                self.articles.splice(self.articles.indexOf(article), 1);
+            });
+        });
+    };
+
 })();
