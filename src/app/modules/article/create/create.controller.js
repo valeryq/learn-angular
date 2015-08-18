@@ -10,7 +10,9 @@
      *
      * @param ArticleService
      * @param $location
+     *
      * @constructor
+     * @ngInject
      */
     function CreateController(ArticleService, $location) {
 

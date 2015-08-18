@@ -8,24 +8,19 @@
     /**
      * Class ListController
      *
+     * @param articles - посты (resolve in routeProvider)
      * @param ArticleService
      * @param $mdDialog
+     *
      * @constructor
+     * @ngInject
      */
-    function ListController(ArticleService, $mdDialog) {
+    function ListController(articles, ArticleService, $mdDialog) {
 
         var vm = this;
 
-        vm.articles = [];
+        vm.articles = articles;
         vm.showConfirmDelete = showConfirmDelete;
-
-        /**
-         * Получить все записи из БД
-         */
-        ArticleService.getList().then(function (articles) {
-            vm.articles = articles;
-        });
-
 
         /**
          * Показать диалог удаления поста
@@ -42,7 +37,7 @@
                 .targetEvent(event);
 
             $mdDialog.show(confirm).then(function () {
-                ArticleService.delete(article.id).then(function () {
+                ArticleService.remove(article.id).then(function () {
                     vm.articles.splice(vm.articles.indexOf(article), 1);
                 });
             });

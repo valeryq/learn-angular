@@ -9,6 +9,7 @@
      * Сервис для постов
      *
      * @constructor
+     * @ngInject
      */
     function ArticleService(ArticleRepository) {
 
@@ -18,7 +19,7 @@
         vm.getList = getList;
         vm.create = create;
         vm.update = update;
-        vm.delete = remove;
+        vm.remove = remove;
 
 
         /**
@@ -69,7 +70,7 @@
          * @returns {*}
          */
         function remove(id) {
-            return ArticleRepository.delete(id);
+            return ArticleRepository.remove(id);
         }
     }
 })();

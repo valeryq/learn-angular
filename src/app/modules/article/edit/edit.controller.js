@@ -8,23 +8,19 @@
     /**
      * Class EditController
      *
+     * @param article - пост (resolve in routeProvider)
      * @param ArticleService
-     * @param $route
      * @param $location
+     *
      * @constructor
+     * @ngInject
      */
-    function EditController(ArticleService, $route, $location) {
+    function EditController(article, ArticleService, $location) {
 
         var vm = this;
 
+        vm.article = article;
         vm.processForm = processForm;
-
-        /**
-         * Получение поста по его идентификатору
-         */
-        ArticleService.find($route.current.params.id).then(function (article) {
-            vm.article = angular.copy(article);
-        });
 
         /**
          * Обработка формы (обновление поста)

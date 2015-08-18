@@ -25,6 +25,8 @@
          *
          * @param $webSql
          * @returns {*|{executeQuery, insert, update, del, select, selectAll, whereClause, replace, createTable, dropTable}}
+         *
+         * @ngInject
          */
         function getProvider($webSql) {
             return $webSql.openDatabase(vm.config.dbName, vm.config.version, vm.config.description, vm.config.size);

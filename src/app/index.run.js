@@ -5,6 +5,7 @@
         .module('blog')
         .run(migrate);
 
+    /** @ngInject */
     function migrate(webSql) {
 
         /**
