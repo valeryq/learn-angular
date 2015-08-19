@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('blog')
+        .module('blog.article')
         .service('ArticleService', ArticleService);
 
     /**
@@ -54,6 +54,25 @@
      */
     ArticleService.prototype.update = function (id, attributes) {
         return this.ArticleRepository.update(id, attributes);
+    };
+
+    /**
+     * Обновить или создать пост
+     *
+     * @param article
+     * @returns {*}
+     */
+    ArticleService.prototype.createOrUpdate = function (article) {
+
+        var promise = null;
+
+        if (article.hasOwnProperty('id')) {
+            promise = this.ArticleRepository.update(article.id, article);
+        } else {
+            promise = this.ArticleRepository.create(article);
+        }
+
+        return promise;
     };
 
     /**

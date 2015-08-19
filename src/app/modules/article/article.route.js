@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('blog')
+        .module('blog.article')
         .config(routeConfig);
 
     /** @ngInject */
@@ -19,18 +19,20 @@
             .when('/create', {
                 templateUrl: 'app/modules/article/create/create.html',
                 controller: 'CreateController',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                resolve: {
+                    article: function () {
+                        return {};
+                    }
+                }
             })
             .when('/edit/:id', {
                 templateUrl: 'app/modules/article/create/create.html',
-                controller: 'EditController',
+                controller: 'CreateController',
                 controllerAs: 'vm',
                 resolve: {
                     article: findArticle
                 }
-            })
-            .otherwise({
-                redirectTo: '/list'
             });
     }
 

@@ -2,19 +2,21 @@
     'use strict';
 
     angular
-        .module('blog')
+        .module('blog.article')
         .controller('CreateController', CreateController);
 
     /**
      * Class CreateController
      *
+     * @param article - пост (resolve in routeProvider)
      * @param ArticleService
      * @param $location
      *
      * @constructor
      * @ngInject
      */
-    function CreateController(ArticleService, $location) {
+    function CreateController(article, ArticleService, $location) {
+        this.article = article;
         this.ArticleService = ArticleService;
         this.$location = $location;
     }
@@ -26,9 +28,9 @@
 
         var self = this;
 
-        self.ArticleService.create(self.article).then(function () {
+        self.ArticleService.createOrUpdate(self.article).then(function () {
             self.$location.path('#/');
         });
     };
-    
+
 })();
