@@ -6,7 +6,7 @@
         <small>{{ article.created_at }}</small>
     </md-card-content>
     <div class="md-actions" layout="row" layout-align="end center">
-        <md-button ng-href="#/edit/{{ article.id }}" class="md-raised md-primary">Редактировать</md-button>
+        <md-button ng-href="/edit/{{ article.id }}" class="md-raised md-primary">Редактировать</md-button>
         <md-button ng-click="vm.showConfirmDelete($event, article)" class="md-raised md-warn">Удалить</md-button>
     </div>
 </md-card>
