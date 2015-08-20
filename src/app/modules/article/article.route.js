@@ -6,9 +6,14 @@
         .config(routeConfig);
 
     /** @ngInject */
-    function routeConfig($routeProvider) {
-        $routeProvider
-            .when('/list', {
+    function routeConfig($stateProvider) {
+        $stateProvider
+            .state('article', {
+                abstract: true,
+                url: '/article'
+            })
+            .state('article.list', {
+                url: '/list',
                 templateUrl: 'app/modules/article/list/list.html',
                 controller: 'ListController',
                 controllerAs: 'vm',
@@ -16,7 +21,8 @@
                     articles: articlesList
                 }
             })
-            .when('/create', {
+            .state('article.create', {
+                url: '/create',
                 templateUrl: 'app/modules/article/create/create.html',
                 controller: 'CreateController',
                 controllerAs: 'vm',
@@ -26,7 +32,8 @@
                     }
                 }
             })
-            .when('/edit/:id', {
+            .state('article.edit', {
+                url: '/edit/:id',
                 templateUrl: 'app/modules/article/create/create.html',
                 controller: 'CreateController',
                 controllerAs: 'vm',

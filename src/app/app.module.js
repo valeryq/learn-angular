@@ -9,7 +9,7 @@
             'ngCookies',
             'ngSanitize',
             'ngResource',
-            'ngRoute',
+            'ui.router',
             'ngMaterial',
             'angular-websql',
 

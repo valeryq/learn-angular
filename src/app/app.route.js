@@ -6,11 +6,9 @@
         .config(routeConfig);
 
     /** @ngInject */
-    function routeConfig($routeProvider) {
-        $routeProvider
-            .otherwise({
-                redirectTo: '/list'
-            });
+    function routeConfig($urlRouterProvider) {
+        $urlRouterProvider
+            .otherwise('/article/list');
     }
 
 })();
