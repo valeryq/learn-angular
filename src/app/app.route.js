@@ -6,9 +6,15 @@
         .config(routeConfig);
 
     /** @ngInject */
-    function routeConfig($urlRouterProvider) {
+    function routeConfig($urlRouterProvider, $stateProvider) {
         $urlRouterProvider
             .otherwise('/article/list');
+
+
+        $stateProvider
+            .state('/', {
+                url: ''
+            });
     }
 
 })();
