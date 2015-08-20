@@ -11,10 +11,10 @@
         $logProvider.debugEnabled(true);
 
         /* Включаем для роутов HTML5 History API */
-        $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
-        });
+        //$locationProvider.html5Mode({
+        //    enabled: true,
+        //    requireBase: false
+        //});
 
         /* Конфигурируем webSql провайдер */
         webSqlProvider.setConfig(DB_CONFIG);
