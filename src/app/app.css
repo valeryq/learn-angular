@@ -7,3 +7,17 @@ html {
 md-toolbar.md-default-theme {
     background-color: black;
 }
+
+.md-title {
+    font-size: 24px;
+}
+
+.md-title a {
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.page-404 {
+    text-align: center;
+    font-size: 50px;
+    margin-top: 15%;
+}

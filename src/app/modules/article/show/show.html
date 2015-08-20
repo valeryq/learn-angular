@@ -1,0 +1,12 @@
+<md-card>
+    <md-card-content>
+        <h2 class="md-title">{{ vm.article.title }}</h2>
+
+        <p>{{ vm.article.description }}</p>
+        <small>{{ vm.article.created_at }}</small>
+    </md-card-content>
+    <div class="md-actions" layout="row" layout-align="end center">
+        <md-button ui-sref="article.edit({id: vm.article.id})" class="md-raised md-primary">Редактировать</md-button>
+        <md-button article-confirm-delete="vm.removeArticle(vm.article)" class="md-raised md-warn">Удалить</md-button>
+    </div>
+</md-card>

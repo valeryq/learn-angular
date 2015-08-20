@@ -8,13 +8,12 @@
     /** @ngInject */
     function routeConfig($urlRouterProvider, $stateProvider) {
         $urlRouterProvider
-            .otherwise('/article/list');
+            .otherwise('/404');
 
-
-        $stateProvider
-            .state('/', {
-                url: ''
-            });
+        $stateProvider.state('404', {
+            url: '/404',
+            templateUrl: 'app/components/404.html'
+        });
     }
 
 })();

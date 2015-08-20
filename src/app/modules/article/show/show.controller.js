@@ -3,20 +3,22 @@
 
     angular
         .module('blog.article')
-        .controller('ListController', ListController);
+        .controller('ShowController', ShowController);
 
     /**
-     * Class ListController
+     * Контроллер просмотра поста
      *
-     * @param articles - посты (resolve in routeProvider)
+     * @param article
      * @param ArticleService
+     * @param $state
      *
      * @constructor
      * @ngInject
      */
-    function ListController(articles, ArticleService) {
-        this.articles = articles;
+    function ShowController(article, ArticleService, $state) {
+        this.article = article;
         this.ArticleService = ArticleService;
+        this.$state = $state;
     }
 
     /**
@@ -24,12 +26,12 @@
      *
      * @param article
      */
-    ListController.prototype.removeArticle = function (article) {
+    ShowController.prototype.removeArticle = function (article) {
 
         var self = this;
 
         self.ArticleService.remove(article.id).then(function () {
-            self.articles.splice(self.articles.indexOf(article), 1);
+            self.$state.go('article.list');
         });
     };
 

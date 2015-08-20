@@ -10,15 +10,15 @@
      *
      * @param article - пост (resolve in routeProvider)
      * @param ArticleService
-     * @param $location
+     * @param $state
      *
      * @constructor
      * @ngInject
      */
-    function CreateController(article, ArticleService, $location) {
+    function CreateController(article, ArticleService, $state) {
         this.article = article;
         this.ArticleService = ArticleService;
-        this.$location = $location;
+        this.$state = $state;
     }
 
     /**
@@ -29,7 +29,7 @@
         var self = this;
 
         self.ArticleService.createOrUpdate(self.article).then(function () {
-            self.$location.path('#/');
+            self.$state.previous('article.list');
         });
     };
 
