@@ -56,6 +56,7 @@
     /**
      * Обновление поста
      *
+     * @param id
      * @param attributes
      */
     ArticleRepository.prototype.update = function (id, attributes) {
@@ -64,9 +65,45 @@
 
     /**
      * Удаление поста из БД
+     *
+     * @param id
+     * @returns {*}
      */
     ArticleRepository.prototype.remove = function (id) {
         return this.webSql.del('articles', {id: id});
+    };
+
+    /**
+     * Получить комментарии поста
+     *
+     * @param id - идентификатор поста
+     * @returns {*}
+     */
+    ArticleRepository.prototype.comments = function (id) {
+        return this.webSql.executeQuery('SELECT * FROM article_comments WHERE article_id = ' + id).then(function (data) {
+            var comments = [];
+
+            for (var i = 0; i < data.rows.length; i++) {
+                comments.push(data.rows.item(i));
+            }
+
+            return comments;
+        });
+    };
+
+    /**
+     * Создание комментария
+     *
+     * @param id - идентификатор поста
+     * @param attributes - аттрибуты комментария
+     *
+     * @returns {*}
+     */
+    ArticleRepository.prototype.commentsCreate = function (id, attributes) {
+
+        attributes.article_id = id;
+
+        return this.webSql.insert('article_comments', attributes);
     };
 
 })();

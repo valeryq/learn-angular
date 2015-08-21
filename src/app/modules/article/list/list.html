@@ -2,7 +2,7 @@
     <md-card-content>
         <h2 class="md-title"><a ui-sref="article.show({id: article.id})">{{ article.title }}</a></h2>
 
-        <p>{{ article.description | limit: 20 }}</p>
+        <p>{{ article.description | limit: 250 }}</p>
         <small>{{ article.created_at }}</small>
     </md-card-content>
     <div class="md-actions" layout="row" layout-align="end center">
