@@ -3,22 +3,24 @@
         <h2>Comments</h2>
         <md-card>
             <md-card-content>
-                <md-input-container>
-                    <label>Username</label>
-                    <input ng-model="vm.article.title" required>
-                </md-input-container>
+                <form ng-submit="vm.create()">
+                    <md-input-container>
+                        <label>Username</label>
+                        <input ng-model="vm.comment.username" required>
+                    </md-input-container>
 
-                <md-input-container>
-                    <label>Message</label>
-                    <textarea ng-model="vm.article.description" rows="3" required></textarea>
-                </md-input-container>
+                    <md-input-container>
+                        <label>Message</label>
+                        <textarea ng-model="vm.comment.body" rows="3" required></textarea>
+                    </md-input-container>
 
-                <md-button type="submit" class="md-raised md-primary">Send</md-button>
+                    <md-button type="submit" class="md-raised md-primary">Send</md-button>
+                </form>
             </md-card-content>
         </md-card>
         <h4 ng-if="!comments">Loading...</h4>
         <md-list>
-            <md-list-item class="md-3-line" ng-repeat="comment in comments">
+            <md-list-item class="md-3-line" ng-repeat="comment in comments | orderBy: '-created_at'">
                 <img ng-src="http://lorempixel.com/100/100/people/" class="face">
 
                 <div class="md-list-item-text">

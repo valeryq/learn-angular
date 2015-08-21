@@ -104,7 +104,7 @@
      * @returns {*}
      */
     ArticleService.prototype.commentsCreate = function (id, attributes) {
-        return this.ArticleRepository.commentsCreate(id);
+        return this.ArticleRepository.commentsCreate(id, attributes);
     };
 
 })();

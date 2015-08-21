@@ -17,8 +17,7 @@
      */
     function ShowController(article, ArticleService, $state) {
         this.article = article;
-        //TODO: Вот сюда комменты нужно запихнуть
-        this.comments = [];
+        this.article.comments = [];
         this.ArticleService = ArticleService;
         this.$state = $state;
     }
@@ -45,10 +44,13 @@
     };
 
     /**
+     * Создание комментария к посту
      *
+     * @param comment
+     * @returns {*}
      */
-    ShowController.prototype.articleCommentsCreate = function () {
-        console.log(this);
+    ShowController.prototype.articleCommentsCreate = function (comment) {
+        return this.ArticleService.commentsCreate(this.article.id, comment);
     }
 
 })();

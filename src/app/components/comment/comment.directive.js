@@ -9,11 +9,12 @@
         var directive = {
             restrict: 'E',
             scope: {
-                comments: '=',
+                comments: '=items',
                 load: '&',
                 create: '&'
             },
             controller: CommentsDirectiveController,
+            controllerAs: 'vm',
             templateUrl: 'app/components/comment/list.html',
             replace: true
         };
@@ -31,11 +32,24 @@
      */
     function CommentsDirectiveController($scope) {
 
+        this.$scope = $scope;
+
         /* Загрузка комментариев */
         $scope.load().then(function (comments) {
-
-            // TODO: Вот тут нужно как-то передать, чтоб работало и в родительском конструкторе
             $scope.comments = comments;
+        });
+
+    }
+
+    /**
+     * Создание комментария
+     */
+    CommentsDirectiveController.prototype.create = function () {
+
+        var self = this;
+
+        self.$scope.create({comment: self.comment}).then(function (data) {
+            self.$scope.comments.push(angular.copy(self.comment));
         });
 
     }

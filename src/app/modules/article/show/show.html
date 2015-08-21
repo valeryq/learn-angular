@@ -1,7 +1,5 @@
 <md-card>
     <md-card-content>
-        <!-- TODO: ТУТ ХОЧУ ПОЛУЧИТЬ КОММЕНТЫ -->
-        {{ vm.comments }}
         <h2 class="md-title">{{ vm.article.title }}</h2>
 
         <p>{{ vm.article.description }}</p>
@@ -13,4 +11,4 @@
     </div>
 </md-card>
 
-<comments load="vm.articleComments()" create="vm.articleCommentsCreate()"></comments>
+<comments items="vm.article.comments" load="vm.articleComments()" create="vm.articleCommentsCreate(comment)"></comments>
