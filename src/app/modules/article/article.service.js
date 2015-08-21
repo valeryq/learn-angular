@@ -85,4 +85,26 @@
         return this.ArticleRepository.remove(id);
     };
 
+    /**
+     * Получить комментарии поста
+     *
+     * @param id - идентификатор поста
+     * @returns {*}
+     */
+    ArticleService.prototype.comments = function (id) {
+        return this.ArticleRepository.comments(id);
+    };
+
+    /**
+     * Создание комментария к посту
+     *
+     * @param id - идентификатор поста
+     * @param attributes - аттрибуты комментария
+     *
+     * @returns {*}
+     */
+    ArticleService.prototype.commentsCreate = function (id, attributes) {
+        return this.ArticleRepository.commentsCreate(id, attributes);
+    };
+
 })();

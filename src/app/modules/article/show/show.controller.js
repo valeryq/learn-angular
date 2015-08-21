@@ -17,22 +17,40 @@
      */
     function ShowController(article, ArticleService, $state) {
         this.article = article;
+        this.article.comments = [];
         this.ArticleService = ArticleService;
         this.$state = $state;
     }
 
     /**
      * Удалить пост
-     *
-     * @param article
      */
-    ShowController.prototype.removeArticle = function (article) {
+    ShowController.prototype.removeArticle = function () {
 
         var self = this;
 
-        self.ArticleService.remove(article.id).then(function () {
+        self.ArticleService.remove(self.article.id).then(function () {
             self.$state.go('article.list');
         });
     };
+
+    /**
+     * Получить список комментариев поста
+     *
+     * @returns {*}
+     */
+    ShowController.prototype.articleComments = function () {
+        return this.ArticleService.comments(this.article.id);
+    };
+
+    /**
+     * Создание комментария к посту
+     *
+     * @param comment
+     * @returns {*}
+     */
+    ShowController.prototype.articleCommentsCreate = function (comment) {
+        return this.ArticleService.commentsCreate(this.article.id, comment);
+    }
 
 })();
