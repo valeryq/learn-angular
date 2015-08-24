@@ -3,15 +3,15 @@
         <h2>Comments</h2>
         <md-card>
             <md-card-content>
-                <form ng-submit="vm.create()">
+                <form ng-submit="commentList.create($event)">
                     <md-input-container>
                         <label>Username</label>
-                        <input ng-model="vm.comment.username" required>
+                        <input ng-model="commentList.comment.username" required>
                     </md-input-container>
 
                     <md-input-container>
                         <label>Message</label>
-                        <textarea ng-model="vm.comment.body" rows="3" required></textarea>
+                        <textarea ng-model="commentList.comment.body" rows="3" required></textarea>
                     </md-input-container>
 
                     <md-button type="submit" class="md-raised md-primary">Send</md-button>

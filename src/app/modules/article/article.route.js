@@ -17,7 +17,7 @@
                 url: '/list',
                 templateUrl: 'app/modules/article/list/list.html',
                 controller: 'ListController',
-                controllerAs: 'vm',
+                controllerAs: 'listArticle',
                 resolve: {
                     articles: articlesList
                 }
@@ -26,7 +26,7 @@
                 url: '/create',
                 templateUrl: 'app/modules/article/create/create.html',
                 controller: 'CreateController',
-                controllerAs: 'vm',
+                controllerAs: 'createArticle',
                 resolve: {
                     article: function () {
                         return {};
@@ -37,7 +37,7 @@
                 url: '/edit/:id',
                 templateUrl: 'app/modules/article/create/create.html',
                 controller: 'CreateController',
-                controllerAs: 'vm',
+                controllerAs: 'createArticle',
                 resolve: {
                     article: findArticle
                 }
@@ -46,9 +46,9 @@
                 url: '/show/:id',
                 templateUrl: 'app/modules/article/show/show.html',
                 controller: 'ShowController',
-                controllerAs: 'vm',
+                controllerAs: 'showArticle',
                 resolve: {
-                    article: findArticle
+                    article: findArticleWithComments
                 }
             });
     }
@@ -77,5 +77,27 @@
     function findArticle($stateParams, ArticleService) {
         return ArticleService.find($stateParams.id);
     }
+
+    /**
+     * Получить промис поиска одного поста с комментариями
+     *
+     * @param $stateParams
+     * @param ArticleService
+     * @returns {*}
+     *
+     * @ngInject
+     */
+    function findArticleWithComments($stateParams, ArticleService) {
+        /* Загружаем пост */
+        return ArticleService.find($stateParams.id).then(function (article) {
+            /* Загружаем комментарии поста */
+            return ArticleService.comments(article.id).then(function (comments) {
+                article.comments = comments;
+
+                return article;
+            });
+        });
+    }
+
 
 })();

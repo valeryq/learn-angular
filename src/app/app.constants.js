@@ -9,6 +9,7 @@
             version: '1.0',
             description: 'Some description',
             size: 1204 * 1204
-        });
+        })
+        .constant('$moment', moment);
 
 })();

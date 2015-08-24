@@ -17,7 +17,6 @@
      */
     function ShowController(article, ArticleService, $state) {
         this.article = article;
-        this.article.comments = [];
         this.ArticleService = ArticleService;
         this.$state = $state;
     }
@@ -34,14 +33,6 @@
         });
     };
 
-    /**
-     * Получить список комментариев поста
-     *
-     * @returns {*}
-     */
-    ShowController.prototype.articleComments = function () {
-        return this.ArticleService.comments(this.article.id);
-    };
 
     /**
      * Создание комментария к посту
@@ -50,7 +41,12 @@
      * @returns {*}
      */
     ShowController.prototype.articleCommentsCreate = function (comment) {
-        return this.ArticleService.commentsCreate(this.article.id, comment);
+
+        var self = this;
+
+        self.ArticleService.commentsCreate(this.article.id, comment).then(function () {
+            self.article.comments.push(comment);
+        });
     }
 
 })();

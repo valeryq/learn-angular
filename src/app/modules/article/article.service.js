@@ -11,8 +11,9 @@
      * @constructor
      * @ngInject
      */
-    function ArticleService(ArticleRepository) {
+    function ArticleService(ArticleRepository, $moment) {
         this.ArticleRepository = ArticleRepository;
+        this.$moment = $moment;
     }
 
     /**
@@ -104,6 +105,7 @@
      * @returns {*}
      */
     ArticleService.prototype.commentsCreate = function (id, attributes) {
+        attributes.created_at = this.$moment().format('YYYY-MM-DD HH:mm:ss');
         return this.ArticleRepository.commentsCreate(id, attributes);
     };
 
