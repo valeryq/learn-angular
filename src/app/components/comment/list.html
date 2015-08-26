@@ -3,15 +3,17 @@
         <h2>Comments</h2>
         <md-card>
             <md-card-content>
-                <form ng-submit="commentList.create($event)">
+                <form name="comment__create" ng-submit="commentList.create($event)">
                     <md-input-container>
                         <label>Username</label>
-                        <input ng-model="commentList.comment.username" required>
+                        <input name="username" ng-model="commentList.comment.username" required>
+                        <i ng-show="comment__create.username.$touched && comment__create.username.$error.required">Поле обязательно к заполнению!</i>
                     </md-input-container>
 
                     <md-input-container>
                         <label>Message</label>
-                        <textarea ng-model="commentList.comment.body" rows="3" required></textarea>
+                        <textarea name="body" ng-model="commentList.comment.body" rows="3" required></textarea>
+                        <i ng-show="comment__create.body.$touched && comment__create.body.$error.required">Поле обязательно к заполнению!</i>
                     </md-input-container>
 
                     <md-button type="submit" class="md-raised md-primary">Send</md-button>

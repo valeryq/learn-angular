@@ -44,6 +44,8 @@
 
         self.$scope.create({comment: self.comment});
 
+        self.$scope.comment__create.$setUntouched();
+
         delete self.comment;
     }
 

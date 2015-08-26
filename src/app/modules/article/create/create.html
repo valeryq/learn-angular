@@ -1,15 +1,17 @@
-<form name="article__create" ng-submit="createArticle.processForm()">
+<form name="article__create" novalidate ng-submit="createArticle.processForm()">
     <div>
         <md-input-container>
             <label>Title</label>
-            <input ng-model="createArticle.article.title" required>
+            <input name="title" ng-model="createArticle.article.title" required>
+            <i ng-show="article__create.title.$touched && article__create.title.$error.required">Поле обязательно к заполнению!</i>
         </md-input-container>
 
         <md-input-container>
             <label>Description</label>
-            <textarea ng-model="createArticle.article.description" rows="10" required></textarea>
+            <textarea name="description" ng-model="createArticle.article.description" rows="10" required></textarea>
+            <i ng-show="article__create.description.$touched && article__create.description.$error.required">Поле обязательно к заполнению!</i>
         </md-input-container>
 
-        <md-button type="submit" class="md-raised md-primary">Save</md-button>
+        <md-button type="submit" class="md-raised md-primary" ng-disabled="article__create.$invalid">Save</md-button>
     </div>
 </form>
