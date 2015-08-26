@@ -12,7 +12,7 @@ md-toolbar.md-default-theme {
     font-size: 24px;
 }
 
-.md-title a {
+a {
     color: rgba(0, 0, 0, 0.87);
 }
 

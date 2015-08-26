@@ -1,3 +1,4 @@
+<div class="empty-article md-whiteframe-z2" ng-show="!listArticle.articles.length">Wait for article <a ui-sref="article.create">create</a>...</div>
 <md-card ng-repeat="article in listArticle.articles | orderBy: '-created_at'">
     <md-card-content>
         <h2 class="md-title"><a ui-sref="article.show({id: article.id})">{{ article.title }}</a></h2>
@@ -7,6 +8,7 @@
     </md-card-content>
     <div class="md-actions" layout="row" layout-align="end center">
         <md-button ui-sref="article.edit({id: article.id})" class="md-raised md-primary">Редактировать</md-button>
-        <md-button article-confirm-delete="listArticle.removeArticle(article)" class="md-raised md-warn">Удалить</md-button>
+        <md-button article-confirm-delete="listArticle.removeArticle(article)" class="md-raised md-warn">Удалить
+        </md-button>
     </div>
 </md-card>
