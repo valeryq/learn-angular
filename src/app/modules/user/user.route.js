@@ -18,6 +18,9 @@
                 templateUrl: 'app/modules/user/login/login.html',
                 controller: 'LoginController',
                 controllerAs: 'login'
+            })
+            .state('user.logout', {
+                controller: 'LogoutController'
             });
     }
 
