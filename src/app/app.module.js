@@ -12,9 +12,11 @@
             'ui.router',
             'ngMaterial',
             'angular-websql',
+            'ngStorage',
 
             /* Application modules */
-            'blog.article'
+            'blog.article',
+            'blog.user'
         ]);
 
 })();

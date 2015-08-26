@@ -9,17 +9,27 @@
     function navbar() {
         var directive = {
             restrict: 'E',
+            scope: {},
             templateUrl: 'app/components/navbar/navbar.html',
             controller: NavbarController,
-            controllerAs: 'vm',
-            bindToController: true
+            controllerAs: 'navbar'
         };
 
         return directive;
 
         /** @ngInject */
-        function NavbarController() {
+        function NavbarController($sessionStorage, $scope) {
+            this.$sessionStorage = $sessionStorage;
+            this.$scope = $scope;
         }
+
+        /**
+         * Метод разлогина
+         */
+        NavbarController.prototype.logout = function () {
+            console.log('logout');
+            this.$scope.$emit('user.logout');
+        };
     }
 
 })();

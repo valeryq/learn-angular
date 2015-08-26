@@ -1,4 +1,4 @@
-<div class="empty-article md-whiteframe-z2" ng-show="!listArticle.articles.length">Wait for article <a ui-sref="article.create">create</a>...</div>
+<div class="center-container md-whiteframe-z2" ng-show="!listArticle.articles.length">Wait for article <a ui-sref="article.create">create</a>...</div>
 <md-card ng-repeat="article in listArticle.articles | orderBy: '-created_at'">
     <md-card-content>
         <h2 class="md-title"><a ui-sref="article.show({id: article.id})">{{ article.title }}</a></h2>
