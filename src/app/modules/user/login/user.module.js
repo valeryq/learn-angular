@@ -2,6 +2,6 @@
     'use strict';
 
     angular
-        .module('blog.article', []);
+        .module('blog.user', []);
 
 })();

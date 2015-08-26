@@ -6,10 +6,15 @@
         .run(run);
 
     /** @ngInject */
-    function run($rootScope, $state) {
+    function run($rootScope, $state, $sessionStorage) {
 
         /* Следим за сменой состояний роутинга */
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
+
+            /* Если пользователь не авторизован */
+            if (!$sessionStorage.auth) {
+                $state.go('user.login');
+            }
 
             /**
              * Переход на предыдущее состояние

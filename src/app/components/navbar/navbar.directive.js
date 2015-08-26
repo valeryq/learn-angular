@@ -3,23 +3,31 @@
 
     angular
         .module('blog')
-        .directive('navbar', navbar);
+        .directive('navbar', navbarDirective);
 
     /** @ngInject */
-    function navbar() {
-        var directive = {
+    function navbarDirective() {
+        return {
             restrict: 'E',
+            scope: {},
+            replace: true,
             templateUrl: 'app/components/navbar/navbar.html',
             controller: NavbarController,
-            controllerAs: 'vm',
-            bindToController: true
+            controllerAs: 'navbar'
         };
-
-        return directive;
-
-        /** @ngInject */
-        function NavbarController() {
-        }
     }
+
+    /** @ngInject */
+    function NavbarController($sessionStorage, $state) {
+        this.$sessionStorage = $sessionStorage;
+        this.$state = $state;
+    }
+
+    /**
+     * Метод разлогина
+     */
+    NavbarController.prototype.logout = function () {
+        this.$state.go('user.logout');
+    };
 
 })();

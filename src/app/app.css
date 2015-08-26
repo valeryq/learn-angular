@@ -21,3 +21,9 @@ a {
     font-size: 50px;
     margin-top: 15%;
 }
+
+.center-container {
+    text-align: center;
+    font-size: 24px;
+    padding: 10px 0;
+}
