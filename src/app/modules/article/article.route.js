@@ -20,7 +20,8 @@
                 controllerAs: 'listArticle',
                 resolve: {
                     articles: articlesList
-                }
+                },
+                auth: true
             })
             .state('article.create', {
                 url: '/create',
@@ -31,7 +32,8 @@
                     article: function () {
                         return {};
                     }
-                }
+                },
+                auth: true
             })
             .state('article.edit', {
                 url: '/edit/:id',
@@ -40,7 +42,8 @@
                 controllerAs: 'createArticle',
                 resolve: {
                     article: findArticle
-                }
+                },
+                auth: true
             })
             .state('article.show', {
                 url: '/show/:id',
@@ -49,7 +52,8 @@
                 controllerAs: 'showArticle',
                 resolve: {
                     article: findArticleWithComments
-                }
+                },
+                auth: true
             });
     }
 

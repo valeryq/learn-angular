@@ -5,9 +5,17 @@
         .module('blog.user')
         .controller('LogoutController', LogoutController);
 
-    /** @ngAnnotate */
-    function LogoutController($sessionStorage, $state, $scope) {
-        $sessionStorage.auth = false;
+    /**
+     * Контроллер выхода пользователя из системы
+     *
+     * @param Auth
+     * @param $state
+     *
+     * @constructor
+     * @ngAnnotate
+     */
+    function LogoutController(Auth, $state) {
+        Auth.logout();
         $state.go('article.list');
     }
 

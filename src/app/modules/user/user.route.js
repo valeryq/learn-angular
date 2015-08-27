@@ -17,10 +17,13 @@
                 url: '/login',
                 templateUrl: 'app/modules/user/login/login.html',
                 controller: 'LoginController',
-                controllerAs: 'login'
+                controllerAs: 'login',
+                auth: false
             })
             .state('user.logout', {
-                controller: 'LogoutController'
+                url: '/logout',
+                controller: 'LogoutController',
+                auth: true
             });
     }
 

@@ -17,11 +17,28 @@
         };
     }
 
-    /** @ngInject */
-    function NavbarController($sessionStorage, $state) {
-        this.$sessionStorage = $sessionStorage;
+    /**
+     * Контроллер директивы хедера
+     *
+     * @param Auth
+     * @param $state
+     *
+     * @constructor
+     * @ngInject
+     */
+    function NavbarController(Auth, $state) {
+        this.Auth = Auth;
         this.$state = $state;
     }
+
+    /**
+     * Проверка авторизован ли пользователь
+     *
+     * @returns {boolean|*}
+     */
+    NavbarController.prototype.checkLogin = function () {
+        return this.Auth.check();
+    };
 
     /**
      * Метод разлогина

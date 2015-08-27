@@ -5,9 +5,17 @@
         .module('blog.user')
         .controller('LoginController', LoginController);
 
-    /** @ngAnnotate */
-    function LoginController($sessionStorage, $state) {
-        this.$sessionStorage = $sessionStorage;
+    /**
+     * Контроллер авторизации пользователя в системе
+     *
+     * @param Auth
+     * @param $state
+     *
+     * @constructor
+     * @ngAnnotate
+     */
+    function LoginController(Auth, $state) {
+        this.Auth = Auth;
         this.$state = $state;
     }
 
@@ -16,7 +24,7 @@
      * Метод авторизации пользователя
      */
     LoginController.prototype.login = function () {
-        this.$sessionStorage.auth = true;
+        this.Auth.login();
         this.$state.go('article.list');
     };
 

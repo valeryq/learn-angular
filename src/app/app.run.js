@@ -6,15 +6,27 @@
         .run(run);
 
     /** @ngInject */
-    function run($rootScope, $state, $sessionStorage) {
+    function run($rootScope, $state, Auth) {
 
-        /* Следим за сменой состояний роутинга */
-        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
+        /* Следим за началом смены состояний роутинга */
+        $rootScope.$on('$stateChangeStart', function (event, state) {
 
-            /* Если пользователь не авторизован */
-            if (!$sessionStorage.auth) {
+            /* Если роут доступен только для авторизованных и пользователь не авторизован */
+            if ((state.auth !== undefined && state.auth) && !Auth.check()) {
+                event.preventDefault();
                 $state.go('user.login');
             }
+
+            /* Если роут недоступен для авторизованых пользователей, то перебрасываем на 404 */
+            if ((state.auth !== undefined && !state.auth) && Auth.check()) {
+                event.preventDefault();
+                $state.go('404');
+            }
+
+        });
+
+        /* Следим за успешной сменой состояний роутинга */
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
 
             /**
              * Переход на предыдущее состояние
@@ -31,6 +43,8 @@
                     $state.go(state_name, state_params);
                 }
             };
+
         });
     }
+
 })();

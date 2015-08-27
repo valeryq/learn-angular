@@ -2,7 +2,8 @@
     <div class="md-toolbar-tools">
         <h1><a ui-sref="article.list">Blog</a></h1>
         <span flex></span>
-        <md-button ui-sref="article.create">Create</md-button>
-        <md-button ng-show="navbar.$sessionStorage.auth" ng-click="navbar.logout()">Logout</md-button>
+
+        <md-button ng-show="navbar.checkLogin()" ui-sref="article.create">Create</md-button>
+        <md-button ng-show="navbar.checkLogin()" ng-click="navbar.logout()">Logout</md-button>
     </div>
 </md-toolbar>
